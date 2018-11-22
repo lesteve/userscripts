@@ -40,9 +40,15 @@
     function gotoCirclePage() {
         var circleElement;
         var useCircleWorkflow;
+
         circleElement = findElementsBySelectorAndText('.branch-action .merge-status-item',
                                                       'ci/circle.+python3')[0];
 
+        // Class selector tweak when the PR has been merged
+        if (!circleElement){
+            circleElement = findElementsBySelectorAndText('.discussion-item-merged .merge-status-item',
+                                                          'ci/circle.+python3')[0];
+        }
         if (circleElement) {
             useCircleWorkflow = true;
         } else {
