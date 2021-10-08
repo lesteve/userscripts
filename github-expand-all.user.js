@@ -24,10 +24,10 @@
 
     function open_outdated_diff_comments() {
         // console.log('Begin open_outdated_diffs');
-        var outdated_diff_elements = document.getElementsByClassName("outdated-comment");
+        var outdated_diff_elements = document.getElementsByClassName("js-toggle-outdated-comments");
         console.log('outdated_diff_elements.length: ' + outdated_diff_elements.length);
         for (var i = 0; i < outdated_diff_elements.length; i++) {
-            var element = outdated_diff_elements[i];
+            var element = outdated_diff_elements[i].parentElement;
             if (!opened) {
                 element.setAttribute('open', '');
             }
