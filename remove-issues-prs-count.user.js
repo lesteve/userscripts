@@ -25,22 +25,9 @@
         var current_url = window.location.href;
 
         if (url_regex.test(current_url)){
-
-            // console.log('URL matched regex');
-
-            var issues_count = document.getElementById('issues-repo-tab-count');
-
-            if (issues_count){
-                issues_count.style.display = 'none';
-            }
-
-            var prs_count = document.getElementById('pull-requests-repo-tab-count');
-
-            if (prs_count){
-                prs_count.style.display = 'none';
-            }
+            var sheet = window.document.styleSheets[0];
+            sheet.insertRule('#issues-repo-tab-count { display: none; }');
+            sheet.insertRule('#pull-requests-repo-tab-count { display: none; }');
         }
-
     }
-
 }());
