@@ -1,10 +1,10 @@
-  // ==UserScript==
-	// @name        remove github issues prs count
-	// @namespace   lesteve.github.io
-	// @include     /https://github.com/.*/
-	// @version     1
-	// @grant       none
-	// ==/UserScript==
+// ==UserScript==
+// @name        remove github issues prs count
+// @namespace   lesteve.github.io
+// @include     /https://github.com/.*/
+// @version     1
+// @grant       none
+// ==/UserScript==
 
 // This hides the count of opened issues and PRs count from github pages
 
