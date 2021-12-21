@@ -1,7 +1,7 @@
   // ==UserScript==
 	// @name        remove github issues prs count
 	// @namespace   lesteve.github.io
-	// @include     /https://github.com/.*
+	// @include     /https://github.com/.*/
 	// @version     1
 	// @grant       none
 	// ==/UserScript==
