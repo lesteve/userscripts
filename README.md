@@ -6,6 +6,7 @@ scikit-learn context but are likely to be useful outside it.
   outdated diff comments, folded conversations (aka "items not shown") and
   large diffs.
 * adds a CircleCI button to easily access HTML generated CircleCI doc
+* removes opened issues and opened PRs count from github pages
 
 To use these userscripts you will need to have a userscript manager installed
 in your browser such as [GreaseMonkey](https://www.greasespot.net/) or
