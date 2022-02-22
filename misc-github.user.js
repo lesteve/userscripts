@@ -19,7 +19,7 @@
     function misc_github() {
 	      // Show all status checks rather than a small window with scroll
         var sheet = window.document.styleSheets[0];
-        sheet.insertRule('.merge-status-list { max-height: fit-content !important; }');
+        sheet.insertRule('.open .merge-status-list { max-height: fit-content !important; }');
     }
 
 }());
