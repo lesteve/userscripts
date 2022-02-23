@@ -6,7 +6,6 @@
 // @grant       none
 // ==/UserScript==
 
-
 // Register a shortcut to expands all outdated comments. This is useful to
 // search text inside old comments thas have been folded because the code has
 // been modified after the comment. At the moment the following content is expanded:
@@ -16,25 +15,36 @@
 //   215 items not shown)
 // * large diffs, which are hidden by default, e.g. the doc/glossary.rst diff
 //   in https://github.com/scikit-learn/scikit-learn/pull/9517/files
+// * some mix of outdated but not resolved, resolved but not outdated (probably
+//   batched suggestions), both resolved and outdated
+//   https://github.com/scikit-learn/scikit-learn/pull/22567
+
 
 (function(){
     'use strict';
     // console.log('github-expand-all.user.js loaded');
     var opened = false;
 
+
     function open_outdated_diff_comments() {
         // console.log('Begin open_outdated_diffs');
-        var outdated_diff_elements = document.getElementsByClassName("js-toggle-outdated-comments");
-        console.log('outdated_diff_elements.length: ' + outdated_diff_elements.length);
-        for (var i = 0; i < outdated_diff_elements.length; i++) {
-            var element = outdated_diff_elements[i].parentElement;
+        var outdated_children_elements = document.querySelectorAll(
+            '.js-comment-container [title~="Outdated"], .js-toggle-outdated-comments');
+        // when looking at the closest js-comment-container there may be
+        // duplicated elements (some comments are both outdated and resolved)
+        // so using a Set, there may be a better way to do it ...
+        var outdated_diff_elements = new Set();
+        outdated_children_elements.forEach(each => outdated_diff_elements.add(each.closest('.js-comment-container')));
+        console.log('outdated_diff_elements.length: ' + outdated_diff_elements.size);
+
+        outdated_diff_elements.forEach( each => {
             if (!opened) {
-                element.setAttribute('open', '');
+                each.setAttribute('open', '');
             }
             else {
-                element.removeAttribute('open');
+                each.removeAttribute('open');
             }
-        }
+        });
         opened = !opened;
         // console.log('Opened: ' + opened);
     }
@@ -50,6 +60,7 @@
             console.log('Loaded all hidden items');
         }
     }
+
 
     function load_large_diffs() {
         var buttons = document.getElementsByClassName('load-diff-button');
