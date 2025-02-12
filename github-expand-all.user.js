@@ -13,12 +13,13 @@
 // * folded conversations
 //   (e.g. https://github.com/scikit-learn/scikit-learn/pull/9012#pullrequestreview-42934289
 //   215 items not shown)
+// * remaining items (maybe a new thing in new-style issues with sub-issues)
+//   e.g. https://github.com/scikit-learn/scikit-learn/issues/26024
 // * large diffs, which are hidden by default, e.g. the doc/glossary.rst diff
 //   in https://github.com/scikit-learn/scikit-learn/pull/9517/files
 // * some mix of outdated but not resolved, resolved but not outdated (probably
 //   batched suggestions), both resolved and outdated
 //   https://github.com/scikit-learn/scikit-learn/pull/22567
-
 
 (function(){
     'use strict';
@@ -50,8 +51,13 @@
     }
 
     function load_hidden_items() {
-        var buttons = document.getElementsByClassName('ajax-pagination-btn');
-        if (buttons.length != 0){
+        // 348 hidden items, e.g. https://github.com/scikit-learn/scikit-learn/pull/9012#pullrequestreview-42934289
+        var hidden_item_buttons = document.getElementsByClassName('ajax-pagination-btn');
+        // 80 remaining items, e.g. https://github.com/scikit-learn/scikit-learn/issues/26024
+        var remaining_item_buttons = document.querySelectorAll('button[data-testid="issue-timeline-load-more-load-top"]');
+        var buttons = Array.from(hidden_item_buttons).concat(Array.from(remaining_item_buttons));
+
+        if (buttons.length != 0) {
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].click();
             }
@@ -60,7 +66,6 @@
             console.log('Loaded all hidden items');
         }
     }
-
 
     function load_large_diffs() {
         var buttons = document.getElementsByClassName('load-diff-button');
