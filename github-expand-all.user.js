@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        github expand all
 // @namespace   lesteve.github.io
-// @include     /https://github.com/.*/(issues|pull)/.*/
+// @include     /https://github.com/.*/(issues|pull|discussions)/.*/
 // @version     1
 // @grant       none
 // ==/UserScript==
