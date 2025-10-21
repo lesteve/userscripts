@@ -68,7 +68,13 @@
     }
 
     function load_large_diffs() {
-        var buttons = document.getElementsByClassName('load-diff-button');
+        // Old PR "files changed" GitHub UI
+        var buttons_old = document.getElementsByClassName('load-diff-button');
+        // New PR "files changed" in GitHub UI, for more details see:
+        // https://github.com/orgs/community/discussions/163932
+        var buttons_new = Array.from(document.querySelectorAll('button')).filter(button =>
+  				button.textContent.includes('Load Diff'));
+        var buttons = Array.from(buttons_old).concat(Array.from(buttons_new));
         for (var i = 0; i < buttons.length; i++) {
             buttons[i].click();
         }
