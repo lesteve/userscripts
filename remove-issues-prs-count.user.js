@@ -26,8 +26,8 @@
 
         if (url_regex.test(current_url)){
             var sheet = window.document.styleSheets[0];
-            sheet.insertRule('#issues-repo-tab-count { display: none; }');
-            sheet.insertRule('#pull-requests-repo-tab-count { display: none; }');
+            sheet.insertRule('[data-content="Issues"] + [data-component="counter"] { display: none; }');
+            sheet.insertRule('[data-content="Pull requests"] + [data-component="counter"] { display: none; }');
         }
     }
 }());
